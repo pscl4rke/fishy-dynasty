@@ -1,6 +1,6 @@
 
 
-from quart import Quart, render_template
+from quart import Quart, render_template, redirect
 
 
 APP = Quart(
@@ -11,9 +11,14 @@ APP = Quart(
 
 @APP.route("/")
 async def index():
+    return redirect("/output/99/")
+
+
+@APP.route("/output/<int:outputnumber>/")
+async def output(outputnumber):
     return await render_template(
         "output.html",
-        title="Output 99",
+        title=f"Output {outputnumber}",
     )
 
 

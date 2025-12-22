@@ -1,6 +1,11 @@
 
 
-from quart import Quart, render_template, redirect
+import logging
+LOG = logging.getLogger("fishy")
+
+import asyncio
+from quart import Quart, request, abort, make_response, render_template, redirect
+from sseing import ServerSentEvent
 
 
 APP = Quart(
@@ -34,5 +39,32 @@ async def output_content_poll(outputnumber):
     return f"New thing {datetime.datetime.now().isoformat()}"
 
 
+async def output_content_generator(outputnumber):
+    import datetime
+    i = 0
+    while True:
+        i = i + 1
+        LOG.info("Yielding %i", i)
+        yield ServerSentEvent(data=f"New thing {datetime.datetime.now().isoformat()}").encode()
+        await asyncio.sleep(1)
+
+
+@APP.route("/output/<int:outputnumber>/content/sse")
+async def output_content_sse(outputnumber):
+    if "text/event-stream" not in request.accept_mimetypes:
+        abort(400)
+    response = await make_response(
+        output_content_generator(outputnumber),
+        {
+            'Content-Type': 'text/event-stream',
+            'Cache-Control': 'no-cache',
+            'Transfer-Encoding': 'chunked',
+        },
+    )
+    response.timeout = None
+    return response
+
+
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     APP.run()

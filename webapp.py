@@ -26,7 +26,18 @@ PRESENTATION = presenting.Presentation()
 
 @APP.route("/")
 async def index():
-    return redirect("/output/99/")
+    return redirect("/dashboard/")
+
+
+@APP.route("/dashboard/")
+async def dashboard():
+    return await render_template("dashboard.html")
+
+
+@APP.route("/activate/<slidename>/")
+async def activate(slidename):
+    await PRESENTATION.activate(slidename)
+    return "Okay"
 
 
 @APP.route("/output/<int:outputnumber>/")

@@ -56,8 +56,11 @@ async def output_content_poll(outputnumber):
 
 
 async def output_content_generator(outputnumber):
-    async for data in PRESENTATION.output(outputnumber):
-        yield ServerSentEvent(data=data).encode()
+    # FIXME when it first connects the current slide needs pushing to it
+    with PRESENTATION.output_fan.subscribe() as slide_queue:
+        while True:
+            data = await slide_queue.get()
+            yield ServerSentEvent(data=data).encode()
 
 
 @APP.route("/output/<int:outputnumber>/content/sse")

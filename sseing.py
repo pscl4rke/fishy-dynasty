@@ -4,6 +4,8 @@
 
 
 from dataclasses import dataclass
+from typing import Iterator
+from quart.typing import ResponseTypes
 
 
 @dataclass
@@ -41,6 +43,19 @@ async def sse():
 
     response = await make_response(
         send_events(),
+        {
+            'Content-Type': 'text/event-stream',
+            'Cache-Control': 'no-cache',
+            'Transfer-Encoding': 'chunked',
+        },
+    )
+    response.timeout = None
+    return response
+
+
+async def make_sse_response(source: Iterator[ServerSentEvent]) -> ResponseTypes:
+    response = await make_response(
+        source,
         {
             'Content-Type': 'text/event-stream',
             'Cache-Control': 'no-cache',

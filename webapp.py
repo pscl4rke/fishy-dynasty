@@ -3,9 +3,11 @@
 import logging
 LOG = logging.getLogger("fishy")
 
-import asyncio
+#import asyncio
 from quart import Quart, request, abort, render_template, redirect
 from sseing import ServerSentEvent, make_sse_response
+
+import presenting
 
 
 APP = Quart(
@@ -17,6 +19,9 @@ APP = Quart(
 import aguirre.integrations.quart as aguirre_quart
 APP.register_blueprint(aguirre_quart.create_blueprint("pkgs"),
                        url_prefix="/pkgs")
+
+
+PRESENTATION = presenting.Presentation()
 
 
 @APP.route("/")
@@ -40,13 +45,8 @@ async def output_content_poll(outputnumber):
 
 
 async def output_content_generator(outputnumber):
-    import datetime
-    i = 0
-    while True:
-        i = i + 1
-        #LOG.info("Yielding %i", i)
-        yield ServerSentEvent(data=f"New thing {datetime.datetime.now().isoformat()}").encode()
-        await asyncio.sleep(1)
+    async for data in PRESENTATION.output(outputnumber):
+        yield ServerSentEvent(data=data).encode()
 
 
 @APP.route("/output/<int:outputnumber>/content/sse")

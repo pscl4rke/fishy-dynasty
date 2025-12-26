@@ -7,8 +7,9 @@
     <body>
         <div>
             <a href="/output/99/" target="_new">Launch Output 99 &nearr;</a>
-            <button hx-get="/activate/one/" hx-swap="none">One</button>
-            <button hx-get="/activate/two/" hx-swap="none">Two</button>
+            {% for slide_name in slide_names %}
+            <button hx-get="/activate/{{ slide_name }}/" hx-swap="none">{{ slide_name }}</button>
+            {% endfor %}
         </div>
     </body>
 </html>

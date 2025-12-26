@@ -22,6 +22,8 @@ APP.register_blueprint(aguirre_quart.create_blueprint("pkgs"),
 
 
 PRESENTATION = presenting.Presentation()
+import examples
+PRESENTATION.load_from_parts(examples.PARTS)
 
 
 @APP.route("/")
@@ -31,7 +33,10 @@ async def index():
 
 @APP.route("/dashboard/")
 async def dashboard():
-    return await render_template("dashboard.html")
+    return await render_template(
+        "dashboard.html",
+        slide_names=list(PRESENTATION.slides),
+    )
 
 
 @APP.route("/activate/<slidename>/")
@@ -47,12 +52,6 @@ async def output(outputnumber):
         title=f"Output {outputnumber}",
         outputnumber=outputnumber,
     )
-
-
-@APP.route("/output/<int:outputnumber>/content/poll")
-async def output_content_poll(outputnumber):
-    import datetime
-    return f"New thing {datetime.datetime.now().isoformat()}"
 
 
 async def output_content_generator(outputnumber):

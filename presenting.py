@@ -8,9 +8,15 @@ from fanning import Fan
 class Presentation:
 
     def __init__(self):
-        self.currently_showing = "initial"
+        self.slides = {}
+        #self.currently_showing = "initial"
         self.output_fan = Fan()
 
+    def load_from_parts(self, parts: list[str]):
+        for i, slide_text in enumerate(parts):
+            slide_name = "slide%03i" % (i + 1)
+            self.slides[slide_name] = slide_text
+
     async def activate(self, slidename: str):
-        self.currently_showing = slidename
-        self.output_fan.publish(slidename)
+        #self.currently_showing = slidename
+        self.output_fan.publish(self.slides[slidename])

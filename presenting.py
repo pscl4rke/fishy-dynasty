@@ -2,28 +2,34 @@
 
 from dataclasses import dataclass
 #import asyncio
+import hashlib
 
 from fanning import Fan
 
 
 @dataclass
 class Slide:
-    name: str
+    identifier: str
     text: str
 
 
 class Presentation:
 
     def __init__(self):
-        self.slides = {}
+        self.slides = []
         #self.currently_showing = "initial"
         self.output_fan = Fan()
 
     def load_from_parts(self, parts: list[str]):
         for i, slide_text in enumerate(parts):
-            slide_name = "slide%03i" % (i + 1)
-            self.slides[slide_name] = Slide(slide_name, slide_text)
+            #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!
+            identifier = hashlib.md5(slide_text.encode()).hexdigest()
+            self.slides.append(Slide(identifier, slide_text))
 
-    async def activate(self, slidename: str):
-        #self.currently_showing = slidename
-        self.output_fan.publish(self.slides[slidename])
+    async def activate(self, identifier: str):
+        for slide in self.slides:
+            if slide.identifier == identifier:
+                #self.currently_showing = identifier
+                self.output_fan.publish(slide)
+                return
+        raise KeyError(f"No slide with identifier {identifier!r}")

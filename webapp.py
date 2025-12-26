@@ -35,13 +35,13 @@ async def index():
 async def dashboard():
     return await render_template(
         "dashboard.html",
-        slides=list(PRESENTATION.slides.values()),
+        slides=PRESENTATION.slides,
     )
 
 
-@APP.route("/activate/<slidename>/")
-async def activate(slidename):
-    await PRESENTATION.activate(slidename)
+@APP.route("/activate/<identifier>/")
+async def activate(identifier):
+    await PRESENTATION.activate(identifier)
     return "Okay"
 
 

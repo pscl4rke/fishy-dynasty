@@ -57,6 +57,7 @@ async def output(outputnumber):
 async def output_content_generator(outputnumber):
     # FIXME when it first connects the current slide needs pushing to it
     with PRESENTATION.output_fan.subscribe() as slide_queue:
+        yield ServerSentEvent(data=PRESENTATION.current_slide.text).encode()
         while True:
             slide = await slide_queue.get()
             yield ServerSentEvent(data=slide.text).encode()

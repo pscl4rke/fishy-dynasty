@@ -13,11 +13,14 @@ class Slide:
     text: str
 
 
+BLANK = Slide("99000000000000000000000000000001", "&nbsp;")  # completely empty strings don't update at all
+
+
 class Presentation:
 
     def __init__(self):
         self.slides = []
-        #self.currently_showing = "initial"
+        self.current_slide = BLANK
         self.output_fan = Fan()
 
     def load_from_parts(self, parts: list[str]):
@@ -29,7 +32,7 @@ class Presentation:
     async def activate(self, identifier: str):
         for slide in self.slides:
             if slide.identifier == identifier:
-                #self.currently_showing = identifier
+                self.current_slide = slide
                 self.output_fan.publish(slide)
                 return
         raise KeyError(f"No slide with identifier {identifier!r}")

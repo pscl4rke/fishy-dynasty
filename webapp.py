@@ -35,7 +35,7 @@ async def index():
 async def dashboard():
     return await render_template(
         "dashboard.html",
-        slide_names=list(PRESENTATION.slides),
+        slides=list(PRESENTATION.slides.values()),
     )
 
 
@@ -58,8 +58,8 @@ async def output_content_generator(outputnumber):
     # FIXME when it first connects the current slide needs pushing to it
     with PRESENTATION.output_fan.subscribe() as slide_queue:
         while True:
-            data = await slide_queue.get()
-            yield ServerSentEvent(data=data).encode()
+            slide = await slide_queue.get()
+            yield ServerSentEvent(data=slide.text).encode()
 
 
 @APP.route("/output/<int:outputnumber>/content/sse")

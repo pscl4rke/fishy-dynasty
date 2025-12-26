@@ -1,6 +1,8 @@
 
 
 # as per https://quart.palletsprojects.com/en/latest/how_to_guides/server_sent_events/
+# EXCEPT I've had to handle multiline "data:" instances
+# (also colons can be used as a comment, esp for keepalives)
 
 
 from dataclasses import dataclass
@@ -16,15 +18,27 @@ class ServerSentEvent:
     retry: int | None = None
 
     def encode(self) -> bytes:
-        message = f"data: {self.data}"
+        lines = []
         if self.event is not None:
-            message = f"{message}\nevent: {self.event}"
+            lines.append(f"event: {self.event}")
         if self.id is not None:
-            message = f"{message}\nid: {self.id}"
+            lines.append(f"id: {self.id}")
         if self.retry is not None:
-            message = f"{message}\nretry: {self.retry}"
-        message = f"{message}\n\n"
-        return message.encode('utf-8')
+            lines.append(f"retry: {self.retry}")
+        for data_line in self.data.splitlines():
+            lines.append(f"data: {data_line}")
+        lines.append("\n")
+        return "\n".join(lines).encode("utf-8")
+        #########
+        #message = f"data: {self.data}"
+        #if self.event is not None:
+        #    message = f"{message}\nevent: {self.event}"
+        #if self.id is not None:
+        #    message = f"{message}\nid: {self.id}"
+        #if self.retry is not None:
+        #    message = f"{message}\nretry: {self.retry}"
+        #message = f"{message}\n\n"
+        #return message.encode('utf-8')
 
 
 from quart import abort, make_response, request

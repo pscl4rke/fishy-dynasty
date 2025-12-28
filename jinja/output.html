@@ -6,8 +6,9 @@
         <script src="/pkgs/htmx-ext-sse@2.2.4/dist/sse.min.js"></script>
         <style>
         :root {
-            --text-colour: #dddddd;
-            --bg-colour: #222222;
+            {%- for key, value in properties.items() %}
+            {{ key }}: {{ value }};
+            {%- endfor %}
         }
         </style>
         <link rel="stylesheet" href="/static/output.css" />

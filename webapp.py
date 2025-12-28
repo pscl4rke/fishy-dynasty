@@ -7,6 +7,7 @@ LOG = logging.getLogger("fishy")
 from quart import Quart, request, abort, render_template, redirect
 from sseing import ServerSentEvent, make_sse_response
 
+import outputting
 import presenting
 
 
@@ -51,6 +52,7 @@ async def output(outputnumber):
         "output.html",
         title=f"Output {outputnumber}",
         outputnumber=outputnumber,
+        properties=outputting.PROPERTIES,
     )
 
 

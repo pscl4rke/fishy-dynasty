@@ -11,9 +11,10 @@ from fanning import Fan
 class Slide:
     identifier: str
     text: str
+    footer: str
 
 
-BLANK = Slide("99000000000000000000000000000001", "")  # completely empty strings don't update at all
+BLANK = Slide("99000000000000000000000000000001", "", "")
 
 
 class Presentation:
@@ -27,7 +28,8 @@ class Presentation:
         for i, slide_text in enumerate(parts):
             #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!
             identifier = hashlib.md5(slide_text.encode()).hexdigest()
-            self.slides.append(Slide(identifier, slide_text))
+            slide_footer = "I am a footer"
+            self.slides.append(Slide(identifier, slide_text, slide_footer))
 
     async def activate(self, identifier: str):
         for slide in self.slides:

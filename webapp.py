@@ -61,11 +61,11 @@ async def output(outputnumber):
 
 async def output_content_generator(outputnumber):
     with PRESENTATION.output_fan.subscribe() as slide_queue:
-        html = await render_fragment("slide.html", content=PRESENTATION.current_slide.text)
+        html = await render_fragment("slide.html", slide=PRESENTATION.current_slide)
         yield ServerSentEvent(data=html).encode()
         while True:
             slide = await slide_queue.get()
-            html = await render_fragment("slide.html", content=slide.text)
+            html = await render_fragment("slide.html", slide=slide)
             yield ServerSentEvent(data=html).encode()
 
 

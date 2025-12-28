@@ -1,10 +1,12 @@
 html {
     height: 100%;
     overflow: hidden;
+    margin: 0px;
 }
 body {
     height: 100%;
     background-color: var(--bg-colour);
+    margin: 0px;
 }
 .slide {
     height: 100%;
@@ -29,9 +31,9 @@ body {
 }
 .slide-footer {
     display: flex;
-    align-self: center;
     white-space-collapse: preserve;
-    color: var(--text-colour);
+    color: var(--footer-colour);
     font-family: sans-serif;
-    font-size: var(--text-size);
+    font-size: var(--footer-size);
+    margin: 40px;
 }

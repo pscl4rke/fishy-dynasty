@@ -17,6 +17,8 @@ OUTPUTS = {
             "--right-margin": "50%",
             "--text-colour": "#dddddd",
             "--text-size": "40px",
+            "--footer-colour": "#dddddd",
+            "--footer-size": "15px",
         },
     ),
     99: Output(  # normal front-of-house
@@ -26,6 +28,8 @@ OUTPUTS = {
             "--right-margin": "0%",
             "--text-colour": "#dddddd",
             "--text-size": "45px",
+            "--footer-colour": "#dddddd",
+            "--footer-size": "20px",
         },
     ),
 }

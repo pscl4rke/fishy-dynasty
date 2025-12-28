@@ -14,11 +14,7 @@
         <link rel="stylesheet" href="/static/output.css" />
     </head>
     <body>
-        <div class="slide">
-        <div class="slide-content">
-        <div hx-ext="sse" sse-connect="/output/{{ outputnumber }}/content/sse" sse-swap="message">
-        </div>
-        </div>
+        <div class="slide" hx-ext="sse" sse-connect="/output/{{ outputnumber }}/content/sse" sse-swap="message">
         </div>
     </body>
 </html>

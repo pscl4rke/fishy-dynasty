@@ -9,6 +9,7 @@ from sseing import ServerSentEvent, make_sse_response
 
 import outputting
 import presenting
+from rendering import render_fragment
 
 
 APP = Quart(
@@ -59,12 +60,13 @@ async def output(outputnumber):
 
 
 async def output_content_generator(outputnumber):
-    # FIXME when it first connects the current slide needs pushing to it
     with PRESENTATION.output_fan.subscribe() as slide_queue:
-        yield ServerSentEvent(data=PRESENTATION.current_slide.text).encode()
+        html = await render_fragment("slide.html", content=PRESENTATION.current_slide.text)
+        yield ServerSentEvent(data=html).encode()
         while True:
             slide = await slide_queue.get()
-            yield ServerSentEvent(data=slide.text).encode()
+            html = await render_fragment("slide.html", content=slide.text)
+            yield ServerSentEvent(data=html).encode()
 
 
 @APP.route("/output/<int:outputnumber>/content/sse")

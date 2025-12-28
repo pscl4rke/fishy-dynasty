@@ -13,7 +13,7 @@ class Slide:
     text: str
 
 
-BLANK = Slide("99000000000000000000000000000001", "&nbsp;")  # completely empty strings don't update at all
+BLANK = Slide("99000000000000000000000000000001", "")  # completely empty strings don't update at all
 
 
 class Presentation:

@@ -6,10 +6,12 @@
     </head>
     <body>
         <div>
-            <a href="/output/99/" target="_new">Launch Output 99 &nearr;</a>
-            {% for slide in slides %}
+            {%- for outputnumber in outputs %}
+            <a href="/output/{{ outputnumber }}/" target="_new">Launch Output {{ outputnumber }} &nearr;</a>
+            {%- endfor %}
+            {%- for slide in slides %}
             <button hx-get="/activate/{{ slide.identifier }}/" hx-swap="none">{{ slide.text[:50] }}</button>
-            {% endfor %}
+            {%- endfor %}
         </div>
     </body>
 </html>

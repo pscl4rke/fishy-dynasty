@@ -37,6 +37,7 @@ async def dashboard():
     return await render_template(
         "dashboard.html",
         slides=PRESENTATION.slides,
+        outputs=list(outputting.OUTPUTS),  # just the keys as numbers
     )
 
 
@@ -48,11 +49,12 @@ async def activate(identifier):
 
 @APP.route("/output/<int:outputnumber>/")
 async def output(outputnumber):
+    output = outputting.OUTPUTS[outputnumber]
     return await render_template(
         "output.html",
         title=f"Output {outputnumber}",
         outputnumber=outputnumber,
-        properties=outputting.PROPERTIES,
+        properties=output.properties,
     )
 
 

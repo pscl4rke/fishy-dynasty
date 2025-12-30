@@ -8,5 +8,11 @@ For mine eyes have seen thy salvation,
 Which thou hast prepared before the face of all people;
 To be a light to lighten the Gentiles
   and to be the glory of thy people Israel.
+
+Glory be to the Father, and to the Son,
+  and to the Holy Ghost;
+As it was in the beginning, is now, and ever shall be
+  world without end.
+                        Amen.
 """.strip()
 NUNC_PARTS = NUNC_DOCUMENT.split("\n\n")

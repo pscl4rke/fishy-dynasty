@@ -26,6 +26,7 @@ APP.register_blueprint(aguirre_quart.create_blueprint("pkgs"),
 PRESENTATION = presenting.Presentation()
 import examples
 PRESENTATION.load_from_parts(examples.NUNC_NAME, examples.NUNC_PARTS)
+PRESENTATION.load_from_parts(examples.CREED_NAME, examples.CREED_PARTS)
 
 
 @APP.route("/")

@@ -3,15 +3,45 @@
     <head>
         <title>Presentation</title>
         <script src="/pkgs/htmx.org@2.0.8/dist/htmx.min.js"></script>
+        <style>
+            body {
+                font-family: sans-serif;
+                background-color: #cccccc;
+            }
+            .section-body {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .slide-thumb {
+                width: 300px;
+                height: 200px;
+                border: solid black 2px;
+                border-radius: 10px;
+                margin: 5px;
+                padding: 10px;
+                background-color: #ffffff;
+            }
+            .slide-thumb:hover {
+                cursor: pointer;
+            }
+            .slide-thumb-content {
+                white-space-collapse: preserve;
+                text-indent: 2em hanging each-line;
+            }
+        </style>
     </head>
     <body>
         <div>
             {%- for outputnumber in outputs %}
             <a href="/output/{{ outputnumber }}/" target="_new">Launch Output {{ outputnumber }} &nearr;</a>
             {%- endfor %}
+            <div class="section-body">
             {%- for slide in slides %}
-            <button hx-get="/activate/{{ slide.identifier }}/" hx-swap="none">{{ slide.text[:50] }}</button>
+            <div class="slide-thumb" hx-get="/activate/{{ slide.identifier }}/" hx-swap="none">
+                <div class="slide-thumb-content">{{ slide.text }}</div>
+            </div>
             {%- endfor %}
+            </div> <!-- /section-body -->
         </div>
     </body>
 </html>

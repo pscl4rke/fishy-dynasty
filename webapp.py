@@ -78,4 +78,5 @@ async def output_content_sse(outputnumber):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
+    #APP.run(host="0.0.0.0")  # needed to allow obs browser to connect from other host
     APP.run()

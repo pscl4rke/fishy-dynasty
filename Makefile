@@ -15,5 +15,6 @@ venv: requirements.txt
 
 webapp: ## Run the webserver in debug mode
 webapp: export QUART_DEBUG := true
+webapp: export QUART_SEND_FILE_MAX_AGE_DEFAULT := 1
 webapp: | venv
 	./venv/bin/python webapp.py

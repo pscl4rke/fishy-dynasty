@@ -16,6 +16,7 @@ APP = Quart(
     "webapp",
     template_folder="jinja",
 )
+APP.config.from_prefixed_env()
 
 
 import aguirre.integrations.quart as aguirre_quart

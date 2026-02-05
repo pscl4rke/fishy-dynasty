@@ -26,8 +26,8 @@ APP.register_blueprint(aguirre_quart.create_blueprint("pkgs"),
 
 PRESENTATION = presenting.Presentation()
 import examples
-PRESENTATION.load_from_parts(examples.NUNC_NAME, examples.NUNC_PARTS)
-PRESENTATION.load_from_parts(examples.CREED_NAME, examples.CREED_PARTS)
+PRESENTATION.add_section(examples.NUNC_NAME, examples.NUNC_PARTS)
+PRESENTATION.add_section(examples.CREED_NAME, examples.CREED_PARTS)
 
 
 @APP.route("/")
@@ -39,7 +39,7 @@ async def index():
 async def dashboard():
     return await render_template(
         "dashboard.html",
-        slides=PRESENTATION.slides,
+        sections=PRESENTATION.sections,
         outputs=list(outputting.OUTPUTS),  # just the keys as numbers
     )
 

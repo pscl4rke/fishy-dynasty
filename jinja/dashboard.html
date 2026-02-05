@@ -8,13 +8,20 @@
     <body>
         <div class="frame dashboard">
 
+            <div class="section-list">
+            {% for section in sections %}
+            <div class="section-title">
+                {{ section.title }}
+            </div> <!-- section-title -->
             <div class="section-body">
-            {%- for slide in slides %}
+            {%- for slide in section.slides %}
             <div class="slide-thumb" hx-get="/activate/{{ slide.identifier }}/" hx-swap="none">
                 <div class="slide-thumb-content">{{ slide.text }}</div>
             </div>
             {%- endfor %}
             </div> <!-- /section-body -->
+            {%- endfor %}
+            </div> <!-- /section-list -->
 
             <div class="bar-right">
             {%- for outputnumber in outputs %}

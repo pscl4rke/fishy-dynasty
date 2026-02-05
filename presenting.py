@@ -14,26 +14,35 @@ class Slide:
     footer: str
 
 
+@dataclass
+class Section:
+    title: str
+    slides: list[Slide]
+
+
 BLANK = Slide("99000000000000000000000000000001", "", "")
 
 
 class Presentation:
 
     def __init__(self):
-        self.slides = []
+        self.sections = []
         self.current_slide = BLANK
         self.output_fan = Fan()
 
-    def load_from_parts(self, slide_footer, parts: list[str]):
+    def add_section(self, title, parts: list[str]):
+        section = Section(title, [])
         for i, slide_text in enumerate(parts):
             #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!
             identifier = hashlib.md5(slide_text.encode()).hexdigest()
-            self.slides.append(Slide(identifier, slide_text, slide_footer))
+            section.slides.append(Slide(identifier, slide_text, title))
+        self.sections.append(section)
 
     async def activate(self, identifier: str):
-        for slide in self.slides:
-            if slide.identifier == identifier:
-                self.current_slide = slide
-                self.output_fan.publish(slide)
-                return
+        for section in self.sections:
+            for slide in section.slides:
+                if slide.identifier == identifier:
+                    self.current_slide = slide
+                    self.output_fan.publish(slide)
+                    return
         raise KeyError(f"No slide with identifier {identifier!r}")

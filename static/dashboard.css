@@ -1,12 +1,30 @@
 
+/* frameset behaviour */
+html, body, .frame {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
 body {
     font-family: sans-serif;
     background-color: #cccccc;
 }
 
+.dashboard {
+    display: flex;
+}
+
+.bar-right {
+    width: 400px;
+    background-color: #888888;
+}
+
 .section-body {
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 .slide-thumb {
@@ -26,4 +44,11 @@ body {
 .slide-thumb-content {
     white-space-collapse: preserve;
     text-indent: 2em hanging each-line;
+}
+
+.output-link {
+    border: solid #cccccc; 2px;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 10px;
 }

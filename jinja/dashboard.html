@@ -6,10 +6,8 @@
         <link rel="stylesheet" href="/static/dashboard.css" />
     </head>
     <body>
-        <div>
-            {%- for outputnumber in outputs %}
-            <a href="/output/{{ outputnumber }}/" target="_new">Launch Output {{ outputnumber }} &nearr;</a>
-            {%- endfor %}
+        <div class="frame dashboard">
+
             <div class="section-body">
             {%- for slide in slides %}
             <div class="slide-thumb" hx-get="/activate/{{ slide.identifier }}/" hx-swap="none">
@@ -17,6 +15,16 @@
             </div>
             {%- endfor %}
             </div> <!-- /section-body -->
+
+            <div class="bar-right">
+            {%- for outputnumber in outputs %}
+            <a href="/output/{{ outputnumber }}/" target="_new">
+            <div class="output-link">
+                Launch Output {{ outputnumber }} &nearr;
+            </div> <!-- output-link -->
+            </a>
+            {%- endfor %}
+            </div> <!-- bar-right -->
         </div>
     </body>
 </html>

@@ -38,11 +38,14 @@ class Presentation:
             section.slides.append(Slide(identifier, slide_text, title))
         self.sections.append(section)
 
+    def slide_list(self):
+        # A list of all slides, ignoring the separation into sections
+        return [slide for section in self.sections for slide in section.slides]
+
     async def activate(self, identifier: str):
-        for section in self.sections:
-            for slide in section.slides:
-                if slide.identifier == identifier:
-                    self.current_slide = slide
-                    self.output_fan.publish(slide)
-                    return
+        for slide in self.slide_list():
+            if slide.identifier == identifier:
+                self.current_slide = slide
+                self.output_fan.publish(slide)
+                return
         raise KeyError(f"No slide with identifier {identifier!r}")

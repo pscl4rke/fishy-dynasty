@@ -28,6 +28,7 @@ PRESENTATION = presenting.Presentation()
 import examples
 PRESENTATION.add_section(examples.NUNC_NAME, examples.NUNC_PARTS)
 PRESENTATION.add_section(examples.CREED_NAME, examples.CREED_PARTS)
+PRESENTATION.add_section(examples.PRAYERS_NAME, examples.PRAYERS_PARTS)
 
 
 @APP.route("/")

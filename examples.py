@@ -48,3 +48,14 @@ I believe in the Holy Ghost;
                         Amen.
 """.strip()
 CREED_PARTS = CREED_DOCUMENT.split("\n\n")
+
+PRAYERS_NAME = "Prayers Following"
+PRAYERS_DOCUMENT = """
+[Ldr] The Lord be with you.
+[All] And with thy spirit.
+[Ldr] Let us pray.
+  Lord, have mercy upon us.
+[All] Christ, have mercy upon us.
+  Lord, have mercy upon us.
+""".strip()
+PRAYERS_PARTS = PRAYERS_DOCUMENT.split("\n\n")

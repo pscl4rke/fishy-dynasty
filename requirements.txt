@@ -1,2 +1,2 @@
-aguirre==0.2.0
+aguirre==0.3.0
 quart==0.20.0

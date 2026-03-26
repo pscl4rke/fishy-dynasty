@@ -1,4 +1,9 @@
 
+:root {
+    /* allows light-dark(...) to work, in browsers since May 2024 */
+    color-scheme: light dark;
+}
+
 /* frameset behaviour */
 html, body, .frame {
     height: 100%;
@@ -10,7 +15,7 @@ html, body, .frame {
 
 body {
     font-family: sans-serif;
-    background-color: #cccccc;
+    background-color: light-dark(#cccccc, #333333);
 }
 
 .dashboard {
@@ -48,7 +53,8 @@ body {
     border-radius: 10px;
     margin: 5px;
     padding: 10px;
-    background-color: #ffffff;
+    color: light-dark(#000000, #ffffff);
+    background-color: light-dark(#ffffff, #000000);
 }
 
 .slide-thumb:hover {

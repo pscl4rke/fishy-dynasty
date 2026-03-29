@@ -17,7 +17,6 @@ As it was in the beginning, is now, and ever shall be
   world without end.
                         Amen.
 """.strip()
-NUNC_PARTS = NUNC_DOCUMENT.split("\n\n")
 
 CREED_NAME = "Apostles Creed\nBCP 1662"
 CREED_DOCUMENT = """
@@ -47,7 +46,6 @@ I believe in the Holy Ghost;
   And the life everlasting.
                         Amen.
 """.strip()
-CREED_PARTS = CREED_DOCUMENT.split("\n\n")
 
 PRAYERS_NAME = "Prayers Following"
 PRAYERS_DOCUMENT = """
@@ -58,4 +56,3 @@ PRAYERS_DOCUMENT = """
 [All] Christ, have mercy upon us.
   Lord, have mercy upon us.
 """.strip()
-PRAYERS_PARTS = PRAYERS_DOCUMENT.split("\n\n")

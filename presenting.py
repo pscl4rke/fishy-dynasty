@@ -42,7 +42,8 @@ class Presentation:
         self.current_slide = BLANK
         self.output_fan = Fan()
 
-    def add_section(self, title, parts: list[str]):
+    def add_section(self, title: str, document: str) -> None:
+        parts = document.split("\n\n")
         section = Section(title, [])
         for i, slide_text in enumerate(parts):
             #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!

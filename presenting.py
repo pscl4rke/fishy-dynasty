@@ -1,16 +1,28 @@
 
 
 from dataclasses import dataclass
+from enum import Enum
+
 #import asyncio
 import hashlib
 
 from fanning import Fan
 
 
+class Speaker(Enum):
+    CONGREGATION = "Congregation"
+
+
+@dataclass
+class Stanza:
+    speaker: Speaker
+    text: str
+
+
 @dataclass
 class Slide:
     identifier: str
-    text: str
+    stanzas: list[Stanza]
     footer: str
 
 
@@ -20,7 +32,7 @@ class Section:
     slides: list[Slide]
 
 
-BLANK = Slide("99000000000000000000000000000001", "", "")
+BLANK = Slide("99000000000000000000000000000001", [], "")
 
 
 class Presentation:
@@ -35,7 +47,8 @@ class Presentation:
         for i, slide_text in enumerate(parts):
             #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!
             identifier = hashlib.md5(slide_text.encode()).hexdigest()
-            section.slides.append(Slide(identifier, slide_text, title))
+            stanzas = [Stanza(Speaker.CONGREGATION, slide_text)]
+            section.slides.append(Slide(identifier, stanzas, title))
         self.sections.append(section)
 
     def slide_list(self):

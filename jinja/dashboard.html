@@ -17,7 +17,9 @@
             <div class="section-body">
             {%- for slide in section.slides %}
             <div class="slide-thumb" hx-get="/activate/{{ slide.identifier }}/" hx-swap="none">
-                <div class="slide-thumb-content">{{ slide.text }}</div>
+                {% for stanza in slide.stanzas %}
+                <div class="slide-thumb-content">{{ stanza.text }}</div>
+                {% endfor %}
             </div>
             {%- endfor %}
             </div> <!-- /section-body -->

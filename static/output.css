@@ -51,9 +51,7 @@ body {
     align-items: center;
 }
 .slide-content {
-    white-space-collapse: preserve;
-    color: var(--text-colour);
-    font-family: "GentiumBook", sans-serif;
+    /* white-space-collapse: preserve; */
     font-size: var(--text-size);
     text-indent: 2em hanging each-line;
 }
@@ -64,4 +62,16 @@ body {
     font-family: sans-serif;
     font-size: var(--footer-size);
     margin: 40px;
+}
+.stanza {
+    white-space-collapse: preserve;
+}
+.by-congregation {
+    color: var(--text-colour);
+    font-family: "GentiumBook", sans-serif;
+}
+.by-leader {
+    color: yellow;
+    font-family: sans-serif;
+    font-style: italic;
 }

@@ -1,8 +1,10 @@
 <!-- completely empty sse events don't update at all! -->
 <div class="slide-body">
+<div class="slide-content">
 {%- for stanza in slide.stanzas %}
-<div class="slide-content">{{ stanza.text.strip() }}</div>
+    <div class="stanza by-{{ stanza.speaker.value }}">{{ stanza.text }}</div>
 {%- endfor %}
+</div>
 </div>
 {%- if slide.footer %}
 <div class="slide-footer">{{ slide.footer.strip() }}</div>

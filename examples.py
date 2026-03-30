@@ -49,10 +49,14 @@ I believe in the Holy Ghost;
 
 PRAYERS_NAME = "Prayers Following"
 PRAYERS_DOCUMENT = """
-[Ldr] The Lord be with you.
-[All] And with thy spirit.
-[Ldr] Let us pray.
+[Ldr]
+The Lord be with you.
+[All]
+And with thy spirit.
+[Ldr]
+Let us pray.
   Lord, have mercy upon us.
-[All] Christ, have mercy upon us.
+[All]
+Christ, have mercy upon us.
   Lord, have mercy upon us.
 """.strip()

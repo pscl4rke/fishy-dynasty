@@ -10,7 +10,8 @@ from fanning import Fan
 
 
 class Speaker(Enum):
-    CONGREGATION = "Congregation"
+    CONGREGATION = "congregation"
+    LEADER = "leader"
 
 
 @dataclass
@@ -43,13 +44,31 @@ class Presentation:
         self.output_fan = Fan()
 
     def add_section(self, title: str, document: str) -> None:
-        parts = document.split("\n\n")
+        document = document + "\n\n"  # emit last slide!
         section = Section(title, [])
-        for i, slide_text in enumerate(parts):
-            #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!
-            identifier = hashlib.md5(slide_text.encode()).hexdigest()
-            stanzas = [Stanza(Speaker.CONGREGATION, slide_text)]
-            section.slides.append(Slide(identifier, stanzas, title))
+        speaker = Speaker.CONGREGATION
+        stanzas_on_slide, emit_slide = [], False
+        for line in document.splitlines():
+            line = line.rstrip()
+            if line == "":
+                emit_slide = True
+            elif line.startswith("[") and line.endswith("]"):
+                speaker_name = line[1:-1].lower()
+                speaker = {
+                    "all": Speaker.CONGREGATION,
+                    "ldr": Speaker.LEADER,
+                }.get(speaker_name, Speaker.CONGREGATION)
+            else:
+                stanzas_on_slide.append(Stanza(speaker, line))
+            if emit_slide and stanzas_on_slide:
+                #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!
+                identifier = hashlib.md5(repr(stanzas_on_slide).encode()).hexdigest()
+                section.slides.append(Slide(identifier, stanzas_on_slide, title))
+                stanzas_on_slide, emit_slide = [], False
+        print(section.slides)
+        for slide in section.slides:
+            print()
+            print(slide.stanzas)
         self.sections.append(section)
 
     def slide_list(self):

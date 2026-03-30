@@ -71,9 +71,21 @@ class Presentation:
         # A list of all slides, ignoring the separation into sections
         return [slide for section in self.sections for slide in section.slides]
 
-    def get_slide_by_identifier(self, identifier: str) -> Slide:
+    def get_slide_by_identifier(self, identifier: str) -> Slide | None:
+        # Return None if the slide shouldn't change
         if identifier == "@blank":
             return BLANK
+        if identifier in ("@previous", "@next"):
+            try:
+                index = self.slide_list().index(self.current_slide)
+            except ValueError:
+                return None
+            if identifier == "@previous":
+                previous = index - 1
+                return None if (previous < 0) else self.slide_list()[previous]
+            else:
+                nxt = index + 1
+                return None if (nxt >= len(self.slide_list())) else self.slide_list()[nxt]
         for slide in self.slide_list():
             if slide.identifier == identifier:
                 return slide
@@ -81,6 +93,8 @@ class Presentation:
 
     async def activate(self, identifier: str):
         slide = self.get_slide_by_identifier(identifier)
+        if slide is None:
+            return
         self.current_slide = slide
         self.output_fan.publish(slide)
         return

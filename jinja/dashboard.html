@@ -44,6 +44,22 @@
                 Blank
             </div>
             </a>
+            <a hx-get="/activate/@previous/" hx-swap="none"
+               hx-trigger="click, keyup[key=='ArrowLeft'] from:body">
+            <div class="action-button">
+                <img src="/pkgs/bootstrap-icons@1.13.1/icons/arrow-left-square.svg" alt="Blank" width="32" height="32" >
+                <br />
+                Previous
+            </div>
+            </a>
+            <a hx-get="/activate/@next/" hx-swap="none"
+               hx-trigger="click, keyup[key=='ArrowRight'] from:body">
+            <div class="action-button">
+                <img src="/pkgs/bootstrap-icons@1.13.1/icons/arrow-right-square.svg" alt="Blank" width="32" height="32" >
+                <br />
+                Next
+            </div>
+            </a>
             </div> <!-- bar-right -->
         </div>
     </body>

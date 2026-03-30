@@ -65,10 +65,6 @@ class Presentation:
                 identifier = hashlib.md5(repr(stanzas_on_slide).encode()).hexdigest()
                 section.slides.append(Slide(identifier, stanzas_on_slide, title))
                 stanzas_on_slide, emit_slide = [], False
-        print(section.slides)
-        for slide in section.slides:
-            print()
-            print(slide.stanzas)
         self.sections.append(section)
 
     def slide_list(self):

@@ -71,10 +71,16 @@ class Presentation:
         # A list of all slides, ignoring the separation into sections
         return [slide for section in self.sections for slide in section.slides]
 
-    async def activate(self, identifier: str):
+    def get_slide_by_identifier(self, identifier: str) -> Slide:
+        if identifier == "@blank":
+            return BLANK
         for slide in self.slide_list():
             if slide.identifier == identifier:
-                self.current_slide = slide
-                self.output_fan.publish(slide)
-                return
+                return slide
         raise KeyError(f"No slide with identifier {identifier!r}")
+
+    async def activate(self, identifier: str):
+        slide = self.get_slide_by_identifier(identifier)
+        self.current_slide = slide
+        self.output_fan.publish(slide)
+        return

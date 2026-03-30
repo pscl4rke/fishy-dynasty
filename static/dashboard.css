@@ -73,3 +73,12 @@ body {
     padding: 10px;
     text-align: center;
 }
+
+.action-button {
+    cursor: pointer;
+    border: solid #cccccc; 2px;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+}

@@ -1,31 +1,65 @@
+
+/* FONT: Andika */
+@font-face {
+    font-family: "Andika";
+    src: url("./font/AndikaNewBasic-R.woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+@font-face {
+    font-family: "Andika";
+    src: url("./font/AndikaNewBasic-I.woff2");
+    font-weight: normal;
+    font-style: italic;
+    font-display: block;
+}
+@font-face {
+    font-family: "Andika";
+    src: url("./font/AndikaNewBasic-B.woff2");
+    font-weight: bold;
+    font-style: normal;
+    font-display: block;
+}
+@font-face {
+    font-family: "Andika";
+    src: url("./font/AndikaNewBasic-BI.woff2");
+    font-weight: bold;
+    font-style: italic;
+    font-display: block;
+}
+
+/* FONT: Gentium */
 @font-face {
     font-family: "GentiumBook";
-    src: url("./GenBkBasR.woff2");
+    src: url("./font/GenBkBasR.woff2");
     font-weight: normal;
     font-style: normal;
     font-display: block;
 }
 @font-face {
     font-family: "GentiumBook";
-    src: url("./GenBkBasI.woff2");
+    src: url("./font/GenBkBasI.woff2");
     font-weight: normal;
     font-style: italic;
     font-display: block;
 }
 @font-face {
     font-family: "GentiumBook";
-    src: url("./GenBkBasB.woff2");
+    src: url("./font/GenBkBasB.woff2");
     font-weight: bold;
     font-style: normal;
     font-display: block;
 }
 @font-face {
     font-family: "GentiumBook";
-    src: url("./GenBkBasBI.woff2");
+    src: url("./font/GenBkBasBI.woff2");
     font-weight: bold;
     font-style: italic;
     font-display: block;
 }
+
+/* Slide Layout */
 html {
     height: 100%;
     overflow: hidden;
@@ -72,6 +106,7 @@ body {
 }
 .by-leader {
     color: yellow;
-    font-family: sans-serif;
+    font-family: "Andika", sans-serif;
     font-style: italic;
+    line-height: 120%;  /* Andika has too much headroom! */
 }

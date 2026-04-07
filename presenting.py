@@ -44,15 +44,19 @@ class Presentation:
         self.current_slide = BLANK
         self.output_fan = Fan()
 
-    def add_section(self, title: str, byline: str | None, document: str) -> None:
+    def add_section(self, document: str) -> None:
         document = document + "\n\n"  # emit last slide!
-        section = Section(title, byline, [])
+        title, byline, slides_in_section = None, None, []
         speaker = Speaker.CONGREGATION
         stanzas_on_slide, emit_slide = [], False
         for line in document.splitlines():
             line = line.rstrip()
             if line == "":
                 emit_slide = True
+            elif line.startswith("%%title: "):
+                title = line[9:]
+            elif line.startswith("%%byline: "):
+                byline = line[10:]
             elif line.startswith("[") and line.endswith("]"):
                 speaker_name = line[1:-1].lower()
                 speaker = {
@@ -67,8 +71,9 @@ class Presentation:
                     #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!
                     identifier = hashlib.md5(repr(stanzas_on_slide).encode()).hexdigest()
                     footer = f"{title or ''}\n{byline or ''}"
-                    section.slides.append(Slide(identifier, stanzas_on_slide, footer))
+                    slides_in_section.append(Slide(identifier, stanzas_on_slide, footer))
                     stanzas_on_slide = []
+        section = Section(title, byline, slides_in_section)
         self.sections.append(section)
 
     def slide_list(self):

@@ -1,9 +1,10 @@
 
 # vim:sw=2:ts=2:
 
-NUNC_TITLE = "Nunc Dimittis"
-NUNC_BYLINE = "BCP 1662"
 NUNC_DOCUMENT = """
+%%title: Nunc Dimittis
+%%byline: BCP 1662
+
 Lord, now lettest thou thy servant depart in peace
   according to thy word.
 For mine eyes have seen thy salvation,
@@ -19,9 +20,9 @@ As it was in the beginning, is now, and ever shall be
                         Amen.
 """
 
-CREED_TITLE = "Apostles Creed"
-CREED_BYLINE = "BCP 1662"
 CREED_DOCUMENT = """
+%%title: Apostles Creed
+%%byline: BCP 1662
 I believe in God the Father Almighty,
   Maker of heaven and earth:
 
@@ -49,9 +50,9 @@ I believe in the Holy Ghost;
                         Amen.
 """
 
-PRAYERS_TITLE = "Prayers Following"
-PRAYERS_BYLINE = None
 PRAYERS_DOCUMENT = """
+%%title: Prayers Following
+
 [Ldr]
 The Lord be with you.
 [All]

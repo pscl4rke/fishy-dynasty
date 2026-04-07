@@ -1,7 +1,7 @@
 
 # vim:sw=2:ts=2:
 
-NUNC_DOCUMENT = """
+EVENING_PRAYER = """
 %%title: Nunc Dimittis
 %%byline: BCP 1662
 
@@ -18,9 +18,9 @@ Glory be to the Father, and to the Son,
 As it was in the beginning, is now, and ever shall be
   world without end.
                         Amen.
-"""
 
-CREED_DOCUMENT = """
+==============
+
 %%title: Apostles Creed
 %%byline: BCP 1662
 I believe in God the Father Almighty,
@@ -48,9 +48,9 @@ I believe in the Holy Ghost;
   The Resurrection of the body,
   And the life everlasting.
                         Amen.
-"""
 
-PRAYERS_DOCUMENT = """
+==============
+
 %%title: Prayers Following
 
 [Ldr]

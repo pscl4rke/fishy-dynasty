@@ -44,15 +44,20 @@ class Presentation:
         self.current_slide = BLANK
         self.output_fan = Fan()
 
-    def add_section(self, document: str) -> None:
-        document = document + "\n\n"  # emit last slide!
+    def add_document(self, document: str) -> None:
+        # What you see here is a phenomenally crude line-orientated parser which really
+        # could and should be done better, but it evolved over time without a clear idea
+        # of what the file format would actually look like!
+        document = document + "\n\n===============\n\n"  # emit last slide/section!
         title, byline, slides_in_section = None, None, []
         speaker = Speaker.CONGREGATION
-        stanzas_on_slide, emit_slide = [], False
+        stanzas_on_slide, emit_slide, emit_section = [], False, False
         for line in document.splitlines():
             line = line.rstrip()
             if line == "":
                 emit_slide = True
+            elif line.strip("=") == "" and len(line) > 5:
+                emit_section = True
             elif line.startswith("%%title: "):
                 title = line[9:]
             elif line.startswith("%%byline: "):
@@ -73,8 +78,11 @@ class Presentation:
                     footer = f"{title or ''}\n{byline or ''}"
                     slides_in_section.append(Slide(identifier, stanzas_on_slide, footer))
                     stanzas_on_slide = []
-        section = Section(title, byline, slides_in_section)
-        self.sections.append(section)
+            if emit_section:
+                emit_section = False
+                section = Section(title, byline, slides_in_section)
+                self.sections.append(section)
+                slides_in_section = []
 
     def slide_list(self):
         # A list of all slides, ignoring the separation into sections

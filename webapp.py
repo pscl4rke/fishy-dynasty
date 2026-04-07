@@ -26,9 +26,7 @@ APP.register_blueprint(aguirre_quart.create_blueprint("pkgs"),
 
 PRESENTATION = presenting.Presentation()
 import examples
-PRESENTATION.add_section(examples.NUNC_DOCUMENT)
-PRESENTATION.add_section(examples.CREED_DOCUMENT)
-PRESENTATION.add_section(examples.PRAYERS_DOCUMENT)
+PRESENTATION.add_document(examples.EVENING_PRAYER)
 
 
 @APP.route("/")

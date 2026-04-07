@@ -16,7 +16,7 @@ Glory be to the Father, and to the Son,
 As it was in the beginning, is now, and ever shall be
   world without end.
                         Amen.
-""".strip()
+"""
 
 CREED_NAME = "Apostles Creed\nBCP 1662"
 CREED_DOCUMENT = """
@@ -45,7 +45,7 @@ I believe in the Holy Ghost;
   The Resurrection of the body,
   And the life everlasting.
                         Amen.
-""".strip()
+"""
 
 PRAYERS_NAME = "Prayers Following"
 PRAYERS_DOCUMENT = """
@@ -59,4 +59,4 @@ Let us pray.
 [All]
 Christ, have mercy upon us.
   Lord, have mercy upon us.
-""".strip()
+"""

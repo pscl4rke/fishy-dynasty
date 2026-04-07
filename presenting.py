@@ -60,11 +60,13 @@ class Presentation:
                 }.get(speaker_name, Speaker.CONGREGATION)
             else:
                 stanzas_on_slide.append(Stanza(speaker, line))
-            if emit_slide and stanzas_on_slide:
-                #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!
-                identifier = hashlib.md5(repr(stanzas_on_slide).encode()).hexdigest()
-                section.slides.append(Slide(identifier, stanzas_on_slide, title))
-                stanzas_on_slide, emit_slide = [], False
+            if emit_slide:
+                emit_slide = False
+                if stanzas_on_slide:
+                    #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!
+                    identifier = hashlib.md5(repr(stanzas_on_slide).encode()).hexdigest()
+                    section.slides.append(Slide(identifier, stanzas_on_slide, title))
+                    stanzas_on_slide = []
         self.sections.append(section)
 
     def slide_list(self):

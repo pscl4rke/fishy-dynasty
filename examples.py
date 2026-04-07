@@ -1,7 +1,10 @@
 
 # vim:sw=2:ts=2:
 
-EVENING_PRAYER = """
+#MONARCH_TITLE = "Queen"
+MONARCH_TITLE = "King"
+
+EVENING_PRAYER = f"""
 %%title: Nunc Dimittis
 %%byline: BCP 1662
 
@@ -63,4 +66,51 @@ Let us pray.
 [All]
 Christ, have mercy upon us.
   Lord, have mercy upon us.
+
+================
+
+%%title: The Lord's Prayer
+%%byline: BCP 1662
+
+Our Father which art in heaven,
+  Hallowed be thy Name,
+Thy kingdom come,
+  Thy will be done,
+  in earth as it is in heaven.
+
+Give us this day our daily bread;
+And forgive us our trespasses,
+  As we forgive them that trespass against us;
+And lead us not into temptation,
+  But deliver us from evil.
+                   Amen.
+
+==================
+
+[Ldr]
+O Lord, shew thy mercy upon us.
+[All]
+And grant us thy salvation.
+[Ldr]
+O Lord, save the {MONARCH_TITLE}.
+[All]
+And mercifully hear us when we call upon thee.
+[Ldr]
+Endue thy Ministers with righteousness.
+[All]
+And make thy chosen people joyful.
+
+[Ldr]
+O Lord, save thy people.
+[All]
+And bless thine inheritance.
+[Ldr]
+Give peace in our time, O Lord.
+[All]
+Because there is none other that fighteth for us,
+  but only thou, O God.
+[Ldr]
+O God, make clean our hearts within us.
+[All]
+And take not thy Holy Spirit from us.
 """

@@ -58,10 +58,10 @@ class Presentation:
                 emit_slide = True
             elif line.strip("=") == "" and len(line) > 5:
                 emit_section = True
-            elif line.startswith("%%title: "):
-                title = line[9:]
-            elif line.startswith("%%byline: "):
-                byline = line[10:]
+            elif line.startswith("%%title:"):
+                title = line[8:].strip()
+            elif line.startswith("%%byline:"):
+                byline = line[9:].strip()
             elif line.startswith("[") and line.endswith("]"):
                 speaker_name = line[1:-1].lower()
                 speaker = {
@@ -82,7 +82,7 @@ class Presentation:
                 emit_section = False
                 section = Section(title, byline, slides_in_section)
                 self.sections.append(section)
-                slides_in_section = []
+                title, byline, slides_in_section = None, None, []
 
     def slide_list(self):
         # A list of all slides, ignoring the separation into sections

@@ -29,7 +29,8 @@ class Slide:
 
 @dataclass
 class Section:
-    title: str
+    title: str | None
+    byline: str | None
     slides: list[Slide]
 
 
@@ -43,9 +44,9 @@ class Presentation:
         self.current_slide = BLANK
         self.output_fan = Fan()
 
-    def add_section(self, title: str, document: str) -> None:
+    def add_section(self, title: str, byline: str | None, document: str) -> None:
         document = document + "\n\n"  # emit last slide!
-        section = Section(title, [])
+        section = Section(title, byline, [])
         speaker = Speaker.CONGREGATION
         stanzas_on_slide, emit_slide = [], False
         for line in document.splitlines():
@@ -65,7 +66,8 @@ class Presentation:
                 if stanzas_on_slide:
                     #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!
                     identifier = hashlib.md5(repr(stanzas_on_slide).encode()).hexdigest()
-                    section.slides.append(Slide(identifier, stanzas_on_slide, title))
+                    footer = f"{title or ''}\n{byline or ''}"
+                    section.slides.append(Slide(identifier, stanzas_on_slide, footer))
                     stanzas_on_slide = []
         self.sections.append(section)
 

@@ -14,7 +14,7 @@
             <div class="section-list">
             {% for section in sections %}
             <div class="section-title">
-                {{ section.title }}
+                {{ section.title or "(untitled)" }} {{ section.byline or "" }}
             </div> <!-- section-title -->
             <div class="section-body">
             {%- for slide in section.slides %}

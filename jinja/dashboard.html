@@ -4,9 +4,11 @@
         <title>Presentation</title>
         <link rel="shortcut icon" type="image/png" href="/static/favicon.png">
         <script src="/pkgs/htmx.org@4.0.0-alpha8/dist/htmx.min.js"></script>
+        <script src="/pkgs/htmx.org@4.0.0-alpha8/dist/ext/hx-sse.min.js"></script>
         <link rel="stylesheet" href="/static/dashboard.css" />
     </head>
     <body>
+        <div hx-sse:connect="/status/sse"></div>
         <div class="frame dashboard">
 
             <div class="section-list">
@@ -16,7 +18,7 @@
             </div> <!-- section-title -->
             <div class="section-body">
             {%- for slide in section.slides %}
-            <div class="slide-thumb" hx-get="/activate/{{ slide.identifier }}/" hx-swap="none">
+            <div class="slide-thumb" id="slide-{{ slide.identifier }}" hx-get="/activate/{{ slide.identifier }}/" hx-swap="none">
                 {% for stanza in slide.stanzas %}
                 <div class="slide-thumb-content">{{ stanza.text }}</div>
                 {% endfor %}
@@ -60,6 +62,8 @@
                 Next
             </div>
             </a>
+            <p><b>STATUS:</b></p>
+            <div id="status"></div>
             </div> <!-- bar-right -->
         </div>
     </body>

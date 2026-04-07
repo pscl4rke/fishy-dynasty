@@ -51,6 +51,21 @@ async def activate(identifier):
     return "Okay"
 
 
+async def status_generator():
+    with PRESENTATION.output_fan.subscribe() as slide_queue:
+        html = await render_fragment("status.html", slide=PRESENTATION.current_slide)
+        yield ServerSentEvent(data=html).encode()
+        while True:
+            slide = await slide_queue.get()
+            html = await render_fragment("status.html", slide=slide)
+            yield ServerSentEvent(data=html).encode()
+
+
+@APP.route("/status/sse")
+async def status_sse():
+    return await make_sse_response(status_generator())
+
+
 @APP.route("/output/<int:outputnumber>/")
 async def output(outputnumber):
     output = outputting.OUTPUTS[outputnumber]

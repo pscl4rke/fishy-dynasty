@@ -11,6 +11,15 @@
         <div hx-sse:connect="/status/sse"></div>
         <div class="frame dashboard">
 
+            <div class="bar-left">
+            {% for section in sections %}
+            <p>
+                <img src="/pkgs/bootstrap-icons@1.13.1/icons/book.svg" alt="Section" />
+                {{ section.title }}
+            </p>
+            {% endfor %}
+            </div><!-- bar-left -->
+
             <div class="section-list">
             {% for section in sections %}
             <div class="section-title">

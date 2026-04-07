@@ -22,6 +22,22 @@ body {
     display: flex;
 }
 
+.bar-left {
+    width: 400px;
+    background-color: light-dark(#ffffff, #000000);
+    color: light-dark(#000000, #ffffff);
+}
+
+.bar-left p {
+    font-size: 10pt;
+    margin: 6px;
+}
+
+.bar-left p img {
+    scale: 80%;
+    vertical-align: middle;
+}
+
 .bar-right {
     width: 400px;
     background-color: #888888;

@@ -14,8 +14,8 @@
             <div class="bar-left">
             {% for section in sections %}
             <p>
-                <img src="/pkgs/bootstrap-icons@1.13.1/icons/book.svg" alt="Section" />
-                {{ section.guess_title() }}
+                <img src="/pkgs/bootstrap-icons@1.13.1/icons/{{ section.guess_icon() }}.svg" alt="Section" />
+                <span>{{ section.guess_title() }}</span>
             </p>
             {% endfor %}
             <h4>Upload Document</h4>

@@ -44,6 +44,14 @@ class Section:
             return full[:30] + "..."
         return "(unknown)"
 
+    def guess_icon(self):
+        first_stanza = self.slides[0].stanzas[0]  # what if either are empty
+        if first_stanza.speaker is Speaker.SCRIPTURE:
+            return "book"
+        if first_stanza.speaker in (Speaker.HEADING, Speaker.SUBHEADING):
+            return "text-center"
+        return "card-text"
+
 
 BLANK = Slide("99000000000000000000000000000001", [], "")
 

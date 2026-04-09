@@ -33,6 +33,7 @@ body {
 .bar-left p {
     font-size: 10pt;
     margin: 6px;
+    vertical-align: middle;
 }
 
 .bar-left p img {

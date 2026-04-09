@@ -3,6 +3,8 @@
 import logging
 LOG = logging.getLogger("fishy")
 
+import argparse
+
 #import asyncio
 from quart import Quart, request, abort, render_template, redirect
 from sseing import ServerSentEvent, make_sse_response
@@ -25,8 +27,6 @@ APP.register_blueprint(aguirre_quart.create_blueprint("pkgs"),
 
 
 PRESENTATION = presenting.Presentation()
-import examples
-PRESENTATION.add_document(examples.EVENING_PRAYER)
 
 
 @APP.route("/")
@@ -115,7 +115,17 @@ async def output_content_sse(outputnumber):
     return await make_sse_response(output_content_generator(outputnumber))
 
 
+def argument_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("documents", nargs="*")
+    return parser
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
+    args = argument_parser().parse_args()
+    for filename in args.documents:
+        with open(filename) as document_file:
+            PRESENTATION.add_document(document_file.read())
     #APP.run(host="0.0.0.0")  # needed to allow obs browser to connect from other host
     APP.run()

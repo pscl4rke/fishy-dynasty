@@ -18,4 +18,4 @@ webapp: export QUART_DEBUG := true
 webapp: export QUART_TEMPLATES_AUTO_RELOAD := true
 webapp: export QUART_SEND_FILE_MAX_AGE_DEFAULT := 1
 webapp: | venv
-	./venv/bin/python webapp.py
+	./venv/bin/python webapp.py example.doc

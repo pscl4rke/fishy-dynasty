@@ -18,6 +18,11 @@
                 {{ section.title }}
             </p>
             {% endfor %}
+            <h4>Upload Document</h4>
+            <form action="/doc/append" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <button>Add to End</button>
+            </form>
             </div><!-- bar-left -->
 
             <div class="section-list">

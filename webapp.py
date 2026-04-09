@@ -43,6 +43,27 @@ async def dashboard():
     )
 
 
+@APP.route("/doc/append/", methods=["POST"])
+async def doc_append():
+    #LOG.info(request)
+    #LOG.info(dir(request))
+    #LOG.info(repr(request.body))
+    #LOG.info(dir(request.body))
+    #LOG.info(await request.get_data())
+    #LOG.info(await request.form)  # filename ends up here if <form enctype=...> not set
+    #LOG.info(await request.files)
+    file = (await request.files)["file"]
+    #LOG.info(file)
+    #LOG.info(dir(file))
+    #LOG.info(file.stream)
+    #LOG.info(dir(file.stream))
+    content = file.stream.read().decode("utf8")
+    #LOG.info(content)
+    if content != "":
+        PRESENTATION.add_document(content)
+    return redirect("/dashboard/")
+
+
 @APP.route("/activate/<identifier>/")
 async def activate(identifier):
     await PRESENTATION.activate(identifier)

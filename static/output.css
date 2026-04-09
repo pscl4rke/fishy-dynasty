@@ -87,14 +87,26 @@ body {
 .slide-content {
     /* white-space-collapse: preserve; */
     font-size: var(--text-size);
+    margin: 40px;
 }
 .slide-footer {
+    /*
     display: flex;
     white-space-collapse: preserve;
+    */
+    margin: 40px;
+}
+.footer-title {
     color: var(--footer-colour);
     font-family: sans-serif;
     font-size: var(--footer-size);
-    margin: 40px;
+    font-weight: bold;
+}
+.footer-byline {
+    color: var(--footer-colour);
+    font-family: sans-serif;
+    font-size: var(--footer-size);
+    font-style: italic;
 }
 .stanza {
     white-space-collapse: preserve;
@@ -105,7 +117,7 @@ body {
     text-indent: 2em hanging each-line;
 }
 .by-leader {
-    color: yellow;
+    color: var(--leader-colour);
     font-family: "Andika", sans-serif;
     font-style: italic;
     line-height: 120%;  /* Andika has too much headroom! */

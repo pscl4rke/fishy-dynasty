@@ -6,6 +6,11 @@
 {%- endfor %}
 </div>
 </div>
-{%- if slide.footer %}
-<div class="slide-footer">{{ slide.footer.strip() }}</div>
+<div class="slide-footer">
+{%- if slide.footer_title %}
+    <div class="footer-title">{{ slide.footer_title.strip() }}</div>
 {%- endif %}
+{%- if slide.footer_byline %}
+    <div class="footer-byline">{{ slide.footer_byline.strip() }}</div>
+{%- endif %}
+</div>

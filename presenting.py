@@ -27,7 +27,8 @@ class Stanza:
 class Slide:
     identifier: str
     stanzas: list[Stanza]
-    footer: str
+    footer_title: str
+    footer_byline: str
 
 
 @dataclass
@@ -53,7 +54,7 @@ class Section:
         return "card-text"
 
 
-BLANK = Slide("99000000000000000000000000000001", [], "")
+BLANK = Slide("99000000000000000000000000000001", [], "", "")
 
 
 class Presentation:
@@ -97,8 +98,7 @@ class Presentation:
                 if stanzas_on_slide:
                     #identifier = str(uuid.uuid4())  # autoreload gives a random id each time!
                     identifier = hashlib.md5(repr(stanzas_on_slide).encode()).hexdigest()
-                    footer = f"{title or ''}\n{byline or ''}"
-                    slides_in_section.append(Slide(identifier, stanzas_on_slide, footer))
+                    slides_in_section.append(Slide(identifier, stanzas_on_slide, title, byline))
                     stanzas_on_slide = []
             if emit_section:
                 emit_section = False

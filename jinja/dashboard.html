@@ -15,7 +15,9 @@
             {% for section in sections %}
             <p>
                 <img src="/pkgs/bootstrap-icons@1.13.1/icons/{{ section.guess_icon() }}.svg" alt="Section" />
-                <span>{{ section.guess_title() }}</span>
+                <a hx-get="/activate/{{ section.slides[0].identifier }}" hx-swap="none">
+                    {{ section.guess_title() }}
+                </a>
             </p>
             {% endfor %}
             <h4>Upload Document</h4>

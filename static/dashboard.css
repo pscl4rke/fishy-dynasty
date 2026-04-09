@@ -18,6 +18,10 @@ body {
     background-color: light-dark(#cccccc, #333333);
 }
 
+a:hover {
+    cursor: pointer;
+}
+
 .dashboard {
     display: flex;
 }

@@ -36,6 +36,14 @@ class Section:
     byline: str | None
     slides: list[Slide]
 
+    def guess_title(self):
+        if self.title:
+            return self.title
+        if self.slides:
+            full = " ".join(stanza.text for stanza in self.slides[0].stanzas)
+            return full[:30] + "..."
+        return "(unknown)"
+
 
 BLANK = Slide("99000000000000000000000000000001", [], "")
 

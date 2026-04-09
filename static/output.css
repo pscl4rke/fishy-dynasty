@@ -115,3 +115,15 @@ body {
     color: var(--text-colour);
     font-family: "GentiumBook", sans-serif;
 }
+.by-heading {
+    color: var(--text-colour);
+    font-family: "Andika", sans-serif;
+    font-size: 200%;
+    text-align: center;
+}
+.by-subheading {
+    color: var(--text-colour);
+    font-family: "GentiumBook", sans-serif;
+    font-size: 150%;
+    text-align: center;
+}

@@ -13,6 +13,8 @@ class Speaker(Enum):
     CONGREGATION = "congregation"
     LEADER = "leader"
     SCRIPTURE = "scripture"
+    HEADING = "heading"
+    SUBHEADING = "subheading"
 
 
 @dataclass
@@ -69,6 +71,8 @@ class Presentation:
                     "all": Speaker.CONGREGATION,
                     "ldr": Speaker.LEADER,
                     "scripture": Speaker.SCRIPTURE,
+                    "heading": Speaker.HEADING,
+                    "subheading": Speaker.SUBHEADING,
                 }.get(speaker_name, Speaker.CONGREGATION)
             else:
                 stanzas_on_slide.append(Stanza(speaker, line))

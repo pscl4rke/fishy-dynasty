@@ -23,7 +23,9 @@ body {
 }
 
 .bar-left {
-    width: 400px;
+    flex-basis: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
     background-color: light-dark(#ffffff, #000000);
     color: light-dark(#000000, #ffffff);
 }
@@ -39,11 +41,15 @@ body {
 }
 
 .bar-right {
-    width: 400px;
+    flex-basis: 200px;
+    flex-grow: 0;
+    flex-shrink: 0;
     background-color: #888888;
 }
 
 .section-list {
+    flex-grow: 1;
+    min-width: 0;
     overflow-y: scroll;
 }
 

@@ -87,7 +87,6 @@ body {
 .slide-content {
     /* white-space-collapse: preserve; */
     font-size: var(--text-size);
-    text-indent: 2em hanging each-line;
 }
 .slide-footer {
     display: flex;
@@ -102,11 +101,17 @@ body {
 }
 .by-congregation {
     color: var(--text-colour);
-    font-family: "GentiumBook", sans-serif;
+    font-family: sans-serif;
+    text-indent: 2em hanging each-line;
 }
 .by-leader {
     color: yellow;
     font-family: "Andika", sans-serif;
     font-style: italic;
     line-height: 120%;  /* Andika has too much headroom! */
+    text-indent: 2em hanging each-line;
+}
+.by-scripture {
+    color: var(--text-colour);
+    font-family: "GentiumBook", sans-serif;
 }

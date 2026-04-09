@@ -12,6 +12,7 @@ from fanning import Fan
 class Speaker(Enum):
     CONGREGATION = "congregation"
     LEADER = "leader"
+    SCRIPTURE = "scripture"
 
 
 @dataclass
@@ -67,6 +68,7 @@ class Presentation:
                 speaker = {
                     "all": Speaker.CONGREGATION,
                     "ldr": Speaker.LEADER,
+                    "scripture": Speaker.SCRIPTURE,
                 }.get(speaker_name, Speaker.CONGREGATION)
             else:
                 stanzas_on_slide.append(Stanza(speaker, line))

@@ -88,7 +88,7 @@ body {
 
 .slide-thumb-content {
     white-space-collapse: preserve;
-    text-indent: 2em hanging each-line;
+    /* text-indent: 2em hanging each-line; */
 }
 
 .output-link {

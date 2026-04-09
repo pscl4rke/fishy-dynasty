@@ -105,6 +105,7 @@ class Presentation:
                 section = Section(title, byline, slides_in_section)
                 self.sections.append(section)
                 title, byline, slides_in_section = None, None, []
+                speaker = Speaker.CONGREGATION
 
     def slide_list(self):
         # A list of all slides, ignoring the separation into sections

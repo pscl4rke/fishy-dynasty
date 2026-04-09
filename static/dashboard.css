@@ -38,6 +38,9 @@ body {
 .bar-left p img {
     scale: 80%;
     vertical-align: middle;
+    @media (prefers-color-scheme: dark) {
+        filter: invert(1);
+    }
 }
 
 .bar-right {

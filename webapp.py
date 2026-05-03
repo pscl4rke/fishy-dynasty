@@ -108,10 +108,10 @@ async def output_content_generator(outputnumber):
 
 @APP.route("/output/<int:outputnumber>/content/sse")
 async def output_content_sse(outputnumber):
-    # Hmm... how very interesting.  HTMX 4.0.0-alpha8 sends "text/html"
-    # for this.  I wonder if they'll fix that?
-    #if "text/event-stream" not in request.accept_mimetypes:
-    #    abort(400)
+    if "text/event-stream" not in request.accept_mimetypes:  # sanity check
+        # HTMX 4 alpha version only sent "text/html", but by the beta version
+        # they'd fixed it to also send "text/event-strean"
+        abort(400)
     return await make_sse_response(output_content_generator(outputnumber))
 
 

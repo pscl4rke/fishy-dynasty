@@ -115,6 +115,16 @@ async def output_content_sse(outputnumber):
     return await make_sse_response(output_content_generator(outputnumber))
 
 
+@APP.route("/dialogue/none/")
+async def dialogue_none():
+    return ""
+
+
+@APP.route("/dialogue/library/")
+async def dialogue_library():
+    return await render_template("modal_library.html")
+
+
 def argument_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("documents", nargs="*")

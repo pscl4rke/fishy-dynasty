@@ -26,6 +26,10 @@ a:hover {
     display: flex;
 }
 
+.modal {
+    backdrop-filter: blur(2px) contrast(50%);
+}
+
 .bar-left {
     flex-basis: 300px;
     flex-grow: 0;
